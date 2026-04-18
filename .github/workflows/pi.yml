@@ -1,0 +1,56 @@
+name: Pi AI Agent
+
+on:
+  workflow_call:
+    inputs:
+      prompt:
+        type: string
+        required: false
+      allowed_actor:
+        type: string
+        required: false
+    secrets:
+      token:
+        required: true
+      gh_token:
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  pi-agent:
+    if: |
+      (startsWith(github.event.comment.body, '/pi') || startsWith(github.event.review.body, '/pi')) &&
+      (inputs.allowed_actor == '' || github.actor == inputs.allowed_actor)
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Run Pi agent
+        uses: shaftoe/pi-coding-agent-action@dev
+        with:
+          github_token: ${{ secrets.gh_token }}
+          provider: ${{ vars.PROVIDER }}
+          model: ${{ vars.MODEL }}
+          token: ${{ secrets.token }}
+          thinking_level: ${{ vars.THINKING_LEVEL }}
+          prompt: ${{ inputs.prompt }}
+          extensions: |
+            npm:pi-librarian
