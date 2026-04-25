@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   pi-agent:
-    uses: ./.github/workflows/pi.yml
+    uses: ./.github/workflows/pi-22.yml
     with:
       allowed_actor: shaftoe
     secrets:

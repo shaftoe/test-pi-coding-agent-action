@@ -1,4 +1,4 @@
-name: Pi AI Agent
+name: Pi AI Agent (Node 22)
 
 on:
   workflow_call:
@@ -29,15 +29,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }}
-          fetch-depth: 0
-
       - uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 22
 
       - name: Run Pi agent
         uses: shaftoe/pi-coding-agent-action@dev
