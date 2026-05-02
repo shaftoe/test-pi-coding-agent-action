@@ -7,14 +7,13 @@ Testing repo to help test and develop [shaftoe/pi-coding-agent-action](https://g
 | Workflow | Trigger | Description |
 |---|---|---|
 | **Pi AI Agent** (`comment.yml`) | Issue/PR comment or review containing `/pi` | Dispatches the Pi agent to act on the comment instruction |
-| **On Pull Request** (`on-pr.yml`) | PR opened or updated | Triggers an automated code review via the Pi agent |
 | **Review PR** (`pr.yml`) | Reusable (`workflow_call`) | Shared job that runs the Pi agent for PR review |
 | **Pi Agent** (`pi.yml`) | Reusable (`workflow_call`) | Shared job that runs the Pi agent for ad-hoc tasks |
 
 ## Usage
 
 - Type `/pi <instruction>` in any issue comment or PR review to invoke the agent.
-- Pull requests are automatically reviewed when opened or updated (if `on-pr.yml` is enabled).
+- PR reviews can be triggered manually by invoking `/pi review this PR` in a PR comment.
 
 ### Required secrets
 
