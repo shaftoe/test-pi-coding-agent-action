@@ -40,6 +40,7 @@ jobs:
           node-version: 24
 
       - name: Run Pi agent
+        id: pi
         uses: shaftoe/pi-coding-agent-action@dev
         with:
           github_token: ${{ secrets.gh_token }}
@@ -48,5 +49,9 @@ jobs:
           token: ${{ secrets.token }}
           thinking_level: ${{ vars.THINKING_LEVEL }}
           prompt: ${{ inputs.prompt }}
-          extensions: |
-            npm:pi-librarian
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ steps.pi.outputs.session_html_path }}
+        with:
+          name: pi-session-html
+          path: ${{ steps.pi.outputs.session_html_path }}
