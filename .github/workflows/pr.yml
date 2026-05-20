@@ -28,7 +28,7 @@ jobs:
           bun-version: latest
 
       - name: Run Pi agent
-        uses: shaftoe/pi-coding-agent-action@dev
+        uses: shaftoe/pi-coding-agent-action@develop
         with:
           github_token: ${{ secrets.gh_token }}
           provider: ${{ vars.PROVIDER }}

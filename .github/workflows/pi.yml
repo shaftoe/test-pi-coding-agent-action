@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Pi agent
         id: pi
-        uses: shaftoe/pi-coding-agent-action@dev
+        uses: shaftoe/pi-coding-agent-action@develop
         with:
           github_token: ${{ secrets.gh_token }}
           provider: ${{ vars.PROVIDER }}

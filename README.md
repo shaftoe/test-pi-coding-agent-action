@@ -36,7 +36,7 @@ The shared reusable workflow that:
 
 1. Checks out the repository (PR head ref when applicable, with full history)
 2. Sets up Node.js 24
-3. Runs `shaftoe/pi-coding-agent-action@dev` with the configured provider, model, and thinking level
+3. Runs `shaftoe/pi-coding-agent-action@develop` with the configured provider, model, and thinking level
 4. Uploads the session HTML as an artifact when available
 
 #### `pr.yml` – Review PR (reusable)
