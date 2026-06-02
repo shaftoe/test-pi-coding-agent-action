@@ -49,6 +49,8 @@ jobs:
           token: ${{ secrets.token }}
           thinking_level: ${{ vars.THINKING_LEVEL }}
           prompt: ${{ inputs.prompt }}
+          extensions: |
+            git:github.com/shaftoe/pi-shared
 
       - uses: actions/upload-artifact@v7
         if: ${{ steps.pi.outputs.session_html_path }}
